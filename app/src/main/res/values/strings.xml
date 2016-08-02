@@ -3,4 +3,5 @@
     <string name="open_drawer">Open Menu</string>
     <string name="close_drawer">Close Menu</string>
     <string name="personnelid">Personnel ID</string>
+    <string name="submit">Submit</string>
 </resources>
