@@ -27,7 +27,7 @@
         android:layout_width="@dimen/Drawer_menu_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#d1ecfd"
+        android:background="#ababab"
         android:orientation="vertical">
 
         <TextView

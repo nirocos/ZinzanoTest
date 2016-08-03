@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="appBackground">
+        <item name="android:background">#0a1118</item>
+    </style>
+
 </resources>

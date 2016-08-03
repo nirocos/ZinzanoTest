@@ -9,31 +9,32 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.faprun.zinzanotest.R;
-import com.faprun.zinzanotest.fragment.MainFragment;
+import com.faprun.zinzanotest.fragment.LotFragment;
 
-public class MainActivity extends AppCompatActivity {
-    DrawerLayout drawerLayout ;
-    ActionBarDrawerToggle actionBarDrawerToggle;
+public class LotActivity extends AppCompatActivity {
+    DrawerLayout drawerLayout;
     Toolbar toolbar;
+    ActionBarDrawerToggle actionBarDrawerToggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_lot);
 
-        initInstance();
         if(savedInstanceState == null){
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentContrainer1, MainFragment.newInstance())
+                    .add(R.id.contentContrainer2, LotFragment.newInstance())
                     .commit();
         }
+        initInstance();
+
     }
 
     private void initInstance() {
+        drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this,
+        actionBarDrawerToggle = new ActionBarDrawerToggle(LotActivity.this,
                 drawerLayout,
                 R.string.open_drawer,
                 R.string.close_drawer);
@@ -44,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setLogo(R.drawable.logo);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
-        }
+
+
+    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
