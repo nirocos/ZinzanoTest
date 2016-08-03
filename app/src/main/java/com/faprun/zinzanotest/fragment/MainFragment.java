@@ -59,7 +59,7 @@ public class MainFragment extends Fragment {
                     Intent intent = new Intent(getContext(), LotActivity.class);
                     getContext().startActivity(intent);
                 }else{
-                    Toast.makeText(getContext(),
+                    Toast.makeText(getActivity(),
                             "Personnel ID Invalid",
                             Toast.LENGTH_SHORT).show();
                 }

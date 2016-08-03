@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.faprun.zinzanotest.R;
 
@@ -13,7 +14,7 @@ import com.faprun.zinzanotest.R;
  * Created by north on 3/8/2559.
  */
 public class LotFragment extends Fragment {
-
+    ListView listView;
     public static LotFragment newInstance(){
         LotFragment lotFragment = new LotFragment();
         Bundle args = new Bundle();
@@ -29,6 +30,12 @@ public class LotFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_lot,
                 container,false);
+        initInstance(rootView);
         return rootView;
+    }
+
+    private void initInstance(View rootView) {
+        listView = (ListView)rootView.findViewById(R.id.lvLot);
+
     }
 }
