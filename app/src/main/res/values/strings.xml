@@ -4,5 +4,5 @@
     <string name="close_drawer">Close Menu</string>
     <string name="personnelid">Personnel ID</string>
     <string name="submit">Submit</string>
-    <string name="hintPersonnelId">Input your Personnel Id</string>
+    <string name="hintPersonnelId">Your Personnel Id</string>
 </resources>

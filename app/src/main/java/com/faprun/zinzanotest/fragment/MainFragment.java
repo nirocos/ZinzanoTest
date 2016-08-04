@@ -1,10 +1,13 @@
 package com.faprun.zinzanotest.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +24,7 @@ import com.faprun.zinzanotest.activity.NewLotActivity;
  * Created by Admin on 2/8/2559.
  */
 public class MainFragment extends Fragment {
+    String text;
     EditText etPersonnelId;
     Button btSubmit;
     public static MainFragment newInstance(){
@@ -32,6 +36,17 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences getPref = getContext()
+                .getSharedPreferences("personnelID",
+                        Context.MODE_PRIVATE);
+       String getText = getPref.getString("personnelID","0");
+        Log.d("per",getText);
+        if(!getText.equals("0")){
+            Intent intent = new Intent(getContext(),
+                    NewLotActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
     }
 
     @Nullable
@@ -55,12 +70,27 @@ public class MainFragment extends Fragment {
         @Override
         public void onClick(View v) {
             if(v == btSubmit){
-                String text = etPersonnelId.getText().toString();
-                    Intent intent = new Intent(getActivity(), NewLotActivity.class);
-                    getActivity().startActivity(intent);
-                    getActivity().finish();
+                text = etPersonnelId.getText().toString();
+                if(text.matches("")){
+                    Toast.makeText(getActivity(),
+                            "Please input your personnel ID",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else{
 
+                    SharedPreferences pref = getContext().getSharedPreferences("personnelID",
+                            Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("personnelID",text);
+                    editor.apply();
+
+                    Intent intent = new Intent(getContext(), NewLotActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
             }
         }
     };
+
+
 }

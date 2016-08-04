@@ -28,10 +28,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void initInstance() {
-            toolBar();
-        }
-    public void toolBar(){
+    public void initInstance() {
+
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -48,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
