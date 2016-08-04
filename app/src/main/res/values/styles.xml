@@ -9,7 +9,7 @@
     </style>
 
     <style name="appBackground">
-        <item name="android:background">#001043</item>
+        <item name="android:background">#070d20</item>
     </style>
 
 </resources>

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.faprun.zinzanotest.R;
 import com.faprun.zinzanotest.activity.LotActivity;
+import com.faprun.zinzanotest.activity.NewLotActivity;
 
 /**
  * Created by Admin on 2/8/2559.
@@ -55,14 +56,9 @@ public class MainFragment extends Fragment {
         public void onClick(View v) {
             if(v == btSubmit){
                 String text = etPersonnelId.getText().toString();
-                if(text.equals("SN001")){
-                    Intent intent = new Intent(getContext(), LotActivity.class);
-                    getContext().startActivity(intent);
-                }else{
-                    Toast.makeText(getActivity(),
-                            "Personnel ID Invalid",
-                            Toast.LENGTH_SHORT).show();
-                }
+                    Intent intent = new Intent(getActivity(), NewLotActivity.class);
+                    getActivity().startActivity(intent);
+                    getActivity().finish();
 
             }
         }

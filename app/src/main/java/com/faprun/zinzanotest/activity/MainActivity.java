@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initInstance() {
+            toolBar();
+        }
+    public void toolBar(){
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -44,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setLogo(R.drawable.logo);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
-        }
-
+    }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
