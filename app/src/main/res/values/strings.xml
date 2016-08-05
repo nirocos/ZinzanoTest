@@ -5,4 +5,6 @@
     <string name="personnelid">Personnel ID</string>
     <string name="submit">Submit</string>
     <string name="hintPersonnelId">Your Personnel Id</string>
+    <string name="lotText">Lot</string>
+    <string name="logout">Log Out</string>
 </resources>

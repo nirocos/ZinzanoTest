@@ -11,9 +11,13 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <com.faprun.zinzanotest.view.StatusBarCustomViewGroup
+            android:id="@+id/cgStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <TextView
-            android:text="Lot"
-            android:textSize="40dp"
+            android:text="@string/lotText"
+            android:textSize="40sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <EditText

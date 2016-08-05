@@ -40,13 +40,13 @@ public class MainFragment extends Fragment {
                 .getSharedPreferences("personnelID",
                         Context.MODE_PRIVATE);
        String getText = getPref.getString("personnelID","0");
-        Log.d("per",getText);
-        if(!getText.equals("0")){
-            Intent intent = new Intent(getContext(),
-                    NewLotActivity.class);
-            startActivity(intent);
-            getActivity().finish();
-        }
+//
+//        if(!getText.equals("0")){
+//            Intent intent = new Intent(getActivity(),
+//                    NewLotActivity.class);
+//            startActivity(intent);
+//            getActivity().finish();
+//        }
     }
 
     @Nullable
@@ -66,6 +66,7 @@ public class MainFragment extends Fragment {
         btSubmit.setOnClickListener(listener);
         etPersonnelId.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
     }
+
     View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -77,14 +78,14 @@ public class MainFragment extends Fragment {
                             Toast.LENGTH_SHORT).show();
                 }
                 else{
-
                     SharedPreferences pref = getContext().getSharedPreferences("personnelID",
                             Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putString("personnelID",text);
                     editor.apply();
 
-                    Intent intent = new Intent(getContext(), NewLotActivity.class);
+                    Intent intent = new Intent(getContext(),
+                            NewLotActivity.class);
                     startActivity(intent);
                     getActivity().finish();
                 }

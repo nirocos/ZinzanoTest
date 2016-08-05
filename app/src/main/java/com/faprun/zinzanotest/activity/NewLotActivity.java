@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.faprun.zinzanotest.R;
+import com.faprun.zinzanotest.fragment.MainFragment;
 import com.faprun.zinzanotest.fragment.NewlotFragment;
 
 public class NewLotActivity extends AppCompatActivity {
@@ -23,12 +24,9 @@ public class NewLotActivity extends AppCompatActivity {
 
         if(savedInstanceState == null){
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentContrainer3,
-                            NewlotFragment.newInstance())
+                    .add(R.id.contentContrainer3,NewlotFragment.newInstance())
                     .commit();
         }
-
-
     }
 
     private void initInstance() {
