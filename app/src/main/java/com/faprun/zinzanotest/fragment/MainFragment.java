@@ -40,13 +40,13 @@ public class MainFragment extends Fragment {
                 .getSharedPreferences("personnelID",
                         Context.MODE_PRIVATE);
        String getText = getPref.getString("personnelID","0");
-//
-//        if(!getText.equals("0")){
-//            Intent intent = new Intent(getActivity(),
-//                    NewLotActivity.class);
-//            startActivity(intent);
-//            getActivity().finish();
-//        }
+
+        if(!getText.equals("0")){
+            Intent intent = new Intent(getActivity(),
+                    NewLotActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
     }
 
     @Nullable

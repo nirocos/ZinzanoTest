@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.faprun.zinzanotest.R;
 import com.faprun.zinzanotest.activity.MainActivity;
@@ -63,8 +64,15 @@ public class StatusBarCustomViewGroup extends FrameLayout {
                         .getSharedPreferences("personnelID",
                                 Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
-                editor.apply();
                 editor.clear();
+                editor.apply();
+
+                String getText = pref.getString("personnelID","0");
+                if(getText.equals("0")){
+                    Toast.makeText(getContext(),
+                            "Logout",
+                            Toast.LENGTH_SHORT).show();
+                }
                 Intent intent = new Intent(getContext(),
                         MainActivity.class);
                 getContext().startActivity(intent);
