@@ -1,10 +1,13 @@
 package com.faprun.zinzanotest.view;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -13,12 +16,13 @@ import android.widget.Toast;
 
 import com.faprun.zinzanotest.R;
 import com.faprun.zinzanotest.activity.MainActivity;
+import com.faprun.zinzanotest.fragment.MainFragment;
 
 /**
  * Created by north on 5/8/2559.
  */
 public class StatusBarCustomViewGroup extends FrameLayout {
-    String text = "false";
+
 
     boolean checkLogout = false;
     Button btLogOut;
@@ -66,16 +70,18 @@ public class StatusBarCustomViewGroup extends FrameLayout {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.clear();
                 editor.apply();
+                String getText = pref.getString("personnelID", "0");
 
-                String getText = pref.getString("personnelID","0");
-                if(getText.equals("0")){
+                if (getText.equals("0")) {
+                    checkLogout = true;
                     Toast.makeText(getContext(),
-                            "Logout",
+                            R.string.textLogout,
                             Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getContext(),
+                            MainActivity.class);
+                            getContext().startActivity(intent);
+                            ((Activity) getContext()).finish();
                 }
-                Intent intent = new Intent(getContext(),
-                        MainActivity.class);
-                getContext().startActivity(intent);
             }
         });
     }

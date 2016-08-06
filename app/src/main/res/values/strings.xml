@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ZinzanoTest</string>
+    <string name="app_name">Zinsano</string>
     <string name="open_drawer">Open Menu</string>
     <string name="close_drawer">Close Menu</string>
     <string name="personnelid">Personnel ID</string>
@@ -7,4 +7,5 @@
     <string name="hintPersonnelId">Your Personnel Id</string>
     <string name="lotText">Lot</string>
     <string name="logout">Log Out</string>
+    <string name="textLogout">Logout</string>
 </resources>

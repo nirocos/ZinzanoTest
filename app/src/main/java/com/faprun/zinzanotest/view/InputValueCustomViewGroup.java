@@ -4,9 +4,11 @@ import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Build;
 import android.text.InputType;
 import android.text.method.TransformationMethod;
 import android.util.AttributeSet;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -29,6 +31,10 @@ public class InputValueCustomViewGroup extends FrameLayout {
 
     DatePickerDialog datePickerDialog;
     SimpleDateFormat dateFormat;
+    Calendar newCalendar;
+    int day;
+    int month;
+    int year;
 
     String text;
     public InputValueCustomViewGroup(Context context) {
@@ -67,7 +73,11 @@ public class InputValueCustomViewGroup extends FrameLayout {
     }
 
     private void initInstance() {
-        dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+        newCalendar = Calendar.getInstance();
+        day = newCalendar.get(Calendar.DAY_OF_MONTH);
+        month = newCalendar.get(Calendar.MONTH);
+        year = newCalendar.get(Calendar.YEAR);
+        dateFormat = new SimpleDateFormat("dd-MM-yyyy", new Locale("th","TH"));
         textInputValue = (TextView)findViewById(R.id.tvtextInputvalue);
         inputValue = (EditText)findViewById(R.id.etinputValue);
 
@@ -80,6 +90,7 @@ public class InputValueCustomViewGroup extends FrameLayout {
         inputValue.setInputType(type);
     }
     public void etCalender (){
+        inputValue.setFocusable(false);
         inputValue.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,8 +101,11 @@ public class InputValueCustomViewGroup extends FrameLayout {
 
     }
     private void setDateTimeField(){
-        Calendar newCalendar = Calendar.getInstance();
-        datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+        Context context1 = getContext();
+        if(isBrokenSamsungDevice()){
+            context1 = new ContextThemeWrapper(getContext(),android.R.style.Theme_Holo_Dialog);
+        }
+        datePickerDialog = new DatePickerDialog(context1, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 Calendar newDate = Calendar.getInstance();
@@ -106,5 +120,16 @@ public class InputValueCustomViewGroup extends FrameLayout {
         textInputValue.setText(text);
     }
 
+    private static boolean isBrokenSamsungDevice() {
+
+        return (Build.MANUFACTURER.equalsIgnoreCase("samsung")
+                && isBetweenAndroidVersions(
+                Build.VERSION_CODES.LOLLIPOP,
+                Build.VERSION_CODES.LOLLIPOP_MR1));
+    }
+
+    private static boolean isBetweenAndroidVersions(int min, int max) {
+        return Build.VERSION.SDK_INT >= min && Build.VERSION.SDK_INT <= max;
+    }
 
 }

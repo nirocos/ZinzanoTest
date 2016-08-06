@@ -29,6 +29,7 @@ public class NewLotActivity extends AppCompatActivity {
         }
     }
 
+
     private void initInstance() {
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

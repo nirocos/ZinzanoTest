@@ -83,7 +83,10 @@ public class MainFragment extends Fragment {
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putString("personnelID",text);
                     editor.apply();
-
+                    String text  = pref.getString("personnelID","0");
+                    Toast.makeText(getContext(),
+                            text,
+                            Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getContext(),
                             NewLotActivity.class);
                     startActivity(intent);

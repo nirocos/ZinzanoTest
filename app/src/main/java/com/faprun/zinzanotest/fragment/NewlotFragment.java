@@ -17,12 +17,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.faprun.zinzanotest.R;
 import com.faprun.zinzanotest.activity.MainActivity;
+import com.faprun.zinzanotest.activity.NewLotActivity;
 import com.faprun.zinzanotest.view.InputValueCustomViewGroup;
 import com.faprun.zinzanotest.view.StatusBarCustomViewGroup;
 
+import java.io.Console;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -32,7 +35,7 @@ import java.util.Locale;
 public class NewlotFragment extends Fragment {
     InputValueCustomViewGroup cgLot,cgModel,cgDate,cgAmout;
     StatusBarCustomViewGroup cgStatus ;
-
+    boolean checklogin = false;
 
     public static NewlotFragment newInstance(){
         NewlotFragment fragment = new NewlotFragment();
@@ -83,11 +86,13 @@ public class NewlotFragment extends Fragment {
         cgStatus.Logout();
 
 
-        }
+
+
+    }
 
 
 
+    }
 
-}
 
 
