@@ -67,7 +67,7 @@ public class NewlotFragment extends Fragment {
         cgAmout = (InputValueCustomViewGroup)rootView.findViewById(R.id.cgAmout);
 
         cgLot.tvSetText("Lot");
-        cgLot.etSetType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        cgLot.etSetType(InputType.TYPE_CLASS_TEXT );
 
         cgModel.tvSetText("Model");
         cgModel.etSetType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
@@ -76,7 +76,7 @@ public class NewlotFragment extends Fragment {
         cgDate.etSetType(InputType.TYPE_NULL);
         cgDate.etCalender();
 
-        cgAmout.tvSetText("Amout");
+        cgAmout.tvSetText("Quality");
         cgAmout.etSetType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         SharedPreferences pref = getContext()
                 .getSharedPreferences("personnelID",
