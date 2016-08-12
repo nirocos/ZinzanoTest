@@ -19,6 +19,10 @@ import android.widget.Toast;
 import com.faprun.zinzanotest.R;
 import com.faprun.zinzanotest.activity.LotActivity;
 import com.faprun.zinzanotest.activity.NewLotActivity;
+import com.faprun.zinzanotest.realm.UserRealm;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by Admin on 2/8/2559.
@@ -78,6 +82,7 @@ public class MainFragment extends Fragment {
                             Toast.LENGTH_SHORT).show();
                 }
                 else{
+
                     SharedPreferences pref = getContext().getSharedPreferences("personnelID",
                             Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();

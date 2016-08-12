@@ -10,8 +10,12 @@ import android.view.MenuItem;
 
 import com.faprun.zinzanotest.R;
 import com.faprun.zinzanotest.fragment.MainFragment;
+import com.faprun.zinzanotest.realm.UserRealm;
+
+import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity {
+
     DrawerLayout drawerLayout ;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
@@ -29,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initInstance() {
-
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
