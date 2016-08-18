@@ -79,9 +79,9 @@ public class NewlotFragment extends Fragment {
         cgAmout.tvSetText("Quality");
         cgAmout.etSetType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         SharedPreferences pref = getContext()
-                .getSharedPreferences("personnelID",
+                .getSharedPreferences("personnelName",
                         Context.MODE_PRIVATE);
-        String text = pref.getString("personnelID", "0");
+        String text = pref.getString("personnelName", "0");
         cgStatus.setPersonnel(text);
         cgStatus.Logout();
 

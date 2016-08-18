@@ -3,6 +3,8 @@ package com.faprun.zinzanotest.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import com.faprun.zinzanotest.R;
 import com.faprun.zinzanotest.activity.LotActivity;
 import com.faprun.zinzanotest.activity.NewLotActivity;
+import com.faprun.zinzanotest.manager.UserManager;
 import com.faprun.zinzanotest.realm.UserRealm;
 
 import io.realm.Realm;
@@ -28,6 +31,8 @@ import io.realm.RealmResults;
  * Created by Admin on 2/8/2559.
  */
 public class MainFragment extends Fragment {
+    UserManager mHelper = new UserManager(getContext());
+
     String text;
     EditText etPersonnelId;
     Button btSubmit;
@@ -41,9 +46,11 @@ public class MainFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences getPref = getContext()
-                .getSharedPreferences("personnelID",
+                .getSharedPreferences("personnelName",
                         Context.MODE_PRIVATE);
-       String getText = getPref.getString("personnelID","0");
+       String getText = getPref.getString("personnelName", "0");
+
+        UserManager userManager = new UserManager(getContext());
 
         if(!getText.equals("0")){
             Intent intent = new Intent(getActivity(),
@@ -60,6 +67,7 @@ public class MainFragment extends Fragment {
                 container,
                 false);
         InitInstance(rootView);
+
         return rootView;
     }
 
@@ -82,20 +90,31 @@ public class MainFragment extends Fragment {
                             Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    mHelper = new UserManager(getContext());
+                    String userSN = mHelper.checkLogin(text);
+                    Log.d("abbbbb",userSN);
+                    if(userSN.equals("found")){
+                        String userName = mHelper.getUsername(text);
+                        SharedPreferences pref = getContext().getSharedPreferences("personnelName",
+                                Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putString("personnelName",userName);
+                        editor.apply();
+                        String text  = pref.getString("personnelName","0");
+                        Toast.makeText(getContext(),
+                                text,
+                                Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getContext(),
+                                NewLotActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }else{
+                        Toast.makeText(getContext(),
+                                "Your Personnel ID is wrong",
+                                Toast.LENGTH_SHORT).show();
+                    }
 
-                    SharedPreferences pref = getContext().getSharedPreferences("personnelID",
-                            Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = pref.edit();
-                    editor.putString("personnelID",text);
-                    editor.apply();
-                    String text  = pref.getString("personnelID","0");
-                    Toast.makeText(getContext(),
-                            text,
-                            Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getContext(),
-                            NewLotActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
+
                 }
             }
         }

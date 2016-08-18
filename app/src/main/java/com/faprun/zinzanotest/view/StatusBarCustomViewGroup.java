@@ -65,12 +65,12 @@ public class StatusBarCustomViewGroup extends FrameLayout {
             @Override
             public void onClick(View v) {
                 SharedPreferences pref = getContext()
-                        .getSharedPreferences("personnelID",
+                        .getSharedPreferences("personnelName",
                                 Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.clear();
                 editor.apply();
-                String getText = pref.getString("personnelID", "0");
+                String getText = pref.getString("personnelName", "0");
 
                 if (getText.equals("0")) {
                     checkLogout = true;
