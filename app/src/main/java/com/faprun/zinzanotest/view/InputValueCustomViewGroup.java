@@ -41,28 +41,25 @@ public class InputValueCustomViewGroup extends FrameLayout {
         super(context);
         initInflate();
         initInstance();
-        setDateTimeField();
     }
 
     public InputValueCustomViewGroup(Context context, AttributeSet attrs) {
         super(context, attrs);
         initInflate();
         initInstance();
-        setDateTimeField();
     }
 
     public InputValueCustomViewGroup(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initInflate();
         initInstance();
-        setDateTimeField();
     }
     @TargetApi(21)
     public InputValueCustomViewGroup(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initInflate();
         initInstance();
-        setDateTimeField();
+
 
     }
 
@@ -90,6 +87,7 @@ public class InputValueCustomViewGroup extends FrameLayout {
         inputValue.setInputType(type);
     }
     public void etCalender (){
+        setDateTimeField();
         inputValue.setFocusable(false);
         inputValue.setOnClickListener(new OnClickListener() {
             @Override
