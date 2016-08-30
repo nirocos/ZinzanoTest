@@ -1,100 +1,109 @@
 package com.faprun.zinzanotest.view;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.InputType;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.SparseArray;
-import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.faprun.zinzanotest.R;
-import com.faprun.zinzanotest.activity.MainActivity;
-import com.faprun.zinzanotest.fragment.MainFragment;
 import com.faprun.zinzanotest.util.BundleSavedState;
 
 /**
- * Created by north on 5/8/2559.
+ * Created by Admin on 30/8/2559.
  */
-public class StatusBarCustomViewGroup extends FrameLayout {
-
-
-    boolean checkLogout = false;
-    Button btLogOut;
-    TextView tvPersonnel;
-    public StatusBarCustomViewGroup(Context context) {
+public class LanceFormCustomViewGroup extends FrameLayout {
+    TextView lanceCgTitle;
+    InputDataCustomViewGroup cgPressure , cgFlowRate,cgVoltage,cgCurrent,cgPower,cgPowerFactor;
+    public LanceFormCustomViewGroup(Context context) {
         super(context);
         initInflate();
         initInstance();
     }
 
-    public StatusBarCustomViewGroup(Context context, AttributeSet attrs) {
+    public LanceFormCustomViewGroup(Context context, AttributeSet attrs) {
         super(context, attrs);
         initInflate();
         initInstance();
     }
 
-    public StatusBarCustomViewGroup(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LanceFormCustomViewGroup(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initInflate();
         initInstance();
     }
     @TargetApi(21)
-    public StatusBarCustomViewGroup(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public LanceFormCustomViewGroup(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initInflate();
         initInstance();
     }
-
-    private void initInstance() {
-        tvPersonnel = (TextView)findViewById(R.id.tvPersonnel);
-        btLogOut = (Button)findViewById(R.id.btLogOut);
-
-
-    }
-    public void setPersonnel(String text){
-        tvPersonnel.setText(text);
-    }
-    public void Logout(){
-        btLogOut.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences pref = getContext()
-                        .getSharedPreferences("personnelName",
-                                Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.clear();
-                editor.apply();
-                String getText = pref.getString("personnelName", "0");
-
-                if (getText.equals("0")) {
-                    checkLogout = true;
-                    Toast.makeText(getContext(),
-                            R.string.textLogout,
-                            Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getContext(),
-                            MainActivity.class);
-                    getContext().startActivity(intent);
-                    ((Activity) getContext()).finish();
-                }
-            }
-        });
-    }
-
     private void initInflate() {
         inflate(getContext(),
-                R.layout.custoviewgroup_statususer,
+                R.layout.customviewgroup_formdatalance,
                 this);
     }
+    private void initInstance() {
+        lanceCgTitle = (TextView)findViewById(R.id.lanceCgTitle);
 
+        cgPressure = (InputDataCustomViewGroup)findViewById(R.id.cgDataPressure);
+        cgFlowRate = (InputDataCustomViewGroup)findViewById(R.id.cgDataFlowRate);
+        cgVoltage = (InputDataCustomViewGroup)findViewById(R.id.cgDataVoltage);
+        cgCurrent = (InputDataCustomViewGroup) findViewById(R.id.cgDataCurrent);
+        cgPower = (InputDataCustomViewGroup)findViewById(R.id.cgDataPower);
+        cgPowerFactor = (InputDataCustomViewGroup)findViewById(R.id.cgDataPowerFactor);
+
+
+        cgPressure.etSetType(InputType.TYPE_CLASS_TEXT);
+        cgPressure.tvSetText("Pressure");
+        cgPressure.setUnit("bars./True bar");
+
+        cgFlowRate.etSetType(InputType.TYPE_CLASS_TEXT);
+        cgFlowRate.setUnit("l/min / l/hr");
+        cgFlowRate.tvSetText("FlowRate(AV)");
+
+        cgVoltage.etSetType(InputType.TYPE_CLASS_TEXT);
+        cgVoltage.tvSetText("Voltage");
+        cgVoltage.setUnit("Volt.");
+
+        cgCurrent.etSetType(InputType.TYPE_CLASS_TEXT);
+        cgCurrent.tvSetText("Current");
+        cgCurrent.setUnit("Amps.");
+
+        cgPower.etSetType(InputType.TYPE_CLASS_TEXT);
+        cgPower.tvSetText("Power");
+        cgPower.setUnit("watts");
+
+        cgPowerFactor.etSetType(InputType.TYPE_CLASS_TEXT);
+        cgPowerFactor.tvSetText("Power factor");
+        cgPowerFactor.setUnit(" ");
+    }
+
+    public String getPressureData(){
+        return cgPressure.etGetText();
+    }
+    public String getFlowRateData(){
+        return cgFlowRate.etGetText();
+    }
+    public String getVoltageData(){
+        return cgVoltage.etGetText();
+    }
+    public String getCurrentData(){
+        return cgCurrent.etGetText();
+    }
+    public String getPowerData(){
+        return cgPower.etGetText();
+    }
+    public String getPowerFactorData(){
+        return cgPowerFactor.etGetText();
+    }
+    public void setTitle(String text){
+        lanceCgTitle.setText(text);
+    }
 
     @Override
     protected void dispatchSaveInstanceState(SparseArray<Parcelable> container) {

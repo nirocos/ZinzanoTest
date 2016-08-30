@@ -10,13 +10,17 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.faprun.zinzanotest.R;
@@ -33,6 +37,10 @@ import java.util.Locale;
  * Created by north on 4/8/2559.
  */
 public class NewlotFragment extends Fragment {
+
+
+    Boolean changeToDataForm = false;
+    Button btNext;
     InputValueCustomViewGroup cgLot,cgModel,cgDate,cgAmout;
     StatusBarCustomViewGroup cgStatus ;
     boolean checklogin = false;
@@ -59,7 +67,7 @@ public class NewlotFragment extends Fragment {
     }
 
     private void initInstance(View rootView) {
-
+        btNext = (Button)rootView.findViewById(R.id.btNext);
         cgStatus = (StatusBarCustomViewGroup)rootView.findViewById(R.id.cgStatus);
         cgLot = (InputValueCustomViewGroup)rootView.findViewById(R.id.cgLot);
         cgModel = (InputValueCustomViewGroup)rootView.findViewById(R.id.cgModel);
@@ -84,15 +92,46 @@ public class NewlotFragment extends Fragment {
         String text = pref.getString("personnelName", "0");
         cgStatus.setPersonnel(text);
         cgStatus.Logout();
-
-
-
-
-    }
-
+        btNext.setOnClickListener(listener);
 
 
     }
+    public Boolean getChangeToDataForm() {
+        return changeToDataForm;
+    }
+
+    public void setChangeToDataForm(Boolean changeToDataForm) {
+        this.changeToDataForm = changeToDataForm;
+    }
+    private Boolean checkEdittextNull(InputValueCustomViewGroup inputValueCustomViewGroup){
+        if(inputValueCustomViewGroup.etGetText().matches("")){
+            return true;
+        }
+        return false;
+    }
+    View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            if(v == btNext){
+
+               if(checkEdittextNull(cgLot)||checkEdittextNull(cgModel)||checkEdittextNull(cgDate)||checkEdittextNull(cgAmout)){
+                   Toast.makeText(getContext(),
+                           "Please input data is complete !!",
+                           Toast.LENGTH_SHORT)
+                           .show();
+               }else{
+                   getActivity().getSupportFragmentManager().beginTransaction()
+                           .replace(R.id.contentContrainer3,
+                                   DataFormFragment.newInstance())
+                           .addToBackStack(null)
+                           .commit();
+               }
+
+            }
+        }
+    };
+}
 
 
 

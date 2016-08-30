@@ -2,4 +2,5 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
 
     <dimen name="Drawer_menu_width">320dp</dimen>
+    <dimen name="tvTextsize">14dp</dimen>
 </resources>

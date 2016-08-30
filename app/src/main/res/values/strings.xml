@@ -8,4 +8,7 @@
     <string name="lotText">Lot</string>
     <string name="logout">Log Out</string>
     <string name="textLogout">Logout</string>
+    <string name="btNext">Next</string>
+    <string name="tvNo">NO.</string>
+    <string name="tvAdjustablelance">Adjustable lance</string>
 </resources>

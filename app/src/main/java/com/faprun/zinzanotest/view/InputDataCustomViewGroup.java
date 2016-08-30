@@ -3,14 +3,12 @@ package com.faprun.zinzanotest.view;
 import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.text.InputType;
-import android.text.method.TransformationMethod;
 import android.util.AttributeSet;
 import android.util.SparseArray;
+import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.DatePicker;
@@ -28,10 +26,10 @@ import java.util.Locale;
 /**
  * Created by north on 6/8/2559.
  */
-public class InputValueCustomViewGroup extends FrameLayout {
+public class InputDataCustomViewGroup extends FrameLayout {
 
-    TextView textInputValue;
-    EditText inputValue;
+    TextView textInputData,textUnit;
+    EditText inputData;
 
     DatePickerDialog datePickerDialog;
     SimpleDateFormat dateFormat;
@@ -41,35 +39,33 @@ public class InputValueCustomViewGroup extends FrameLayout {
     int year;
 
     String text;
-    public InputValueCustomViewGroup(Context context) {
+    public InputDataCustomViewGroup(Context context) {
         super(context);
         initInflate();
         initInstance();
     }
 
-    public InputValueCustomViewGroup(Context context, AttributeSet attrs) {
+    public InputDataCustomViewGroup(Context context, AttributeSet attrs) {
         super(context, attrs);
         initInflate();
         initInstance();
     }
 
-    public InputValueCustomViewGroup(Context context, AttributeSet attrs, int defStyleAttr) {
+    public InputDataCustomViewGroup(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initInflate();
         initInstance();
     }
     @TargetApi(21)
-    public InputValueCustomViewGroup(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public InputDataCustomViewGroup(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initInflate();
         initInstance();
-
-
     }
 
     private void initInflate() {
         inflate(getContext(),
-                R.layout.customviewgroup_inputvalue,
+                R.layout.customviewgroup_inputdata,
                 this);
     }
 
@@ -79,21 +75,25 @@ public class InputValueCustomViewGroup extends FrameLayout {
         month = newCalendar.get(Calendar.MONTH);
         year = newCalendar.get(Calendar.YEAR);
         dateFormat = new SimpleDateFormat("dd-MM-yyyy", new Locale("th","TH"));
-        textInputValue = (TextView)findViewById(R.id.tvtextInputvalue);
-        inputValue = (EditText)findViewById(R.id.etinputValue);
 
+        textInputData = (TextView)findViewById(R.id.tvtextInputData);
+        inputData = (EditText)findViewById(R.id.etinputData);
+        textUnit = (TextView)findViewById(R.id.tvtextUnit);
     }
     public String etGetText(){
-       text =  inputValue.getText().toString().trim();
+       text =  inputData.getText().toString().trim();
         return text;
     }
+    public void setUnit(String text){
+        textUnit.setText(text);
+    }
     public void etSetType(int type){
-        inputValue.setInputType(type);
+        inputData.setInputType(type);
     }
     public void etCalender (){
         setDateTimeField();
-        inputValue.setFocusable(false);
-        inputValue.setOnClickListener(new OnClickListener() {
+        inputData.setFocusable(false);
+        inputData.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 datePickerDialog.show();
@@ -101,6 +101,9 @@ public class InputValueCustomViewGroup extends FrameLayout {
         });
 
 
+    }
+    public void setTvTextsize(int textsize){
+        textInputData.setTextSize(TypedValue.COMPLEX_UNIT_SP,textsize);
     }
     private void setDateTimeField(){
         Context context1 = getContext();
@@ -112,14 +115,14 @@ public class InputValueCustomViewGroup extends FrameLayout {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year,monthOfYear,dayOfMonth);
-                inputValue.setText(dateFormat.format(newDate.getTime()));
+                inputData.setText(dateFormat.format(newDate.getTime()));
             }
         },newCalendar.get(Calendar.YEAR),
                 newCalendar.get(Calendar.MONTH),
                 newCalendar.get(Calendar.DAY_OF_MONTH));
     }
     public void tvSetText(String text){
-        textInputValue.setText(text);
+        textInputData.setText(text);
     }
 
     private static boolean isBrokenSamsungDevice() {
@@ -184,4 +187,5 @@ public class InputValueCustomViewGroup extends FrameLayout {
         }
 
     }
+
 }

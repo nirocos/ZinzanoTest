@@ -1,5 +1,6 @@
 package com.faprun.zinzanotest.activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.faprun.zinzanotest.R;
+import com.faprun.zinzanotest.fragment.DataFormFragment;
 import com.faprun.zinzanotest.fragment.MainFragment;
 import com.faprun.zinzanotest.fragment.NewlotFragment;
 
@@ -46,8 +48,21 @@ public class NewLotActivity extends AppCompatActivity {
             getSupportActionBar().setLogo(R.drawable.logo);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
+           changeFragment();
         }
+    private void changeFragment(){
+        NewlotFragment fragment = new NewlotFragment();
+        Boolean changeFragment = fragment.getChangeToDataForm();
 
+        if(changeFragment){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.contentContrainer3,
+                            DataFormFragment.newInstance())
+                    .addToBackStack(null)
+                    .commit();
+        }
+    }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);

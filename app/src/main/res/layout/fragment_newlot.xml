@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/newLot"
     android:orientation="vertical" android:layout_width="match_parent"
-    style="@style/appBackground"
     android:layout_height="match_parent">
     <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_margin="25dp"
+
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -32,7 +32,13 @@
             android:id="@+id/cgAmout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
+        <Button
+            android:id="@+id/btNext"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:text="@string/btNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </ScrollView>
 </LinearLayout>
